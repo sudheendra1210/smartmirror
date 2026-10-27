@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b1014" />
+    <meta name="description" content="A calm, privacy-conscious smart mirror dashboard prototype." />
+    <link rel="icon" href="data:," />
+    <title>Reflect — Smart Mirror</title>
+    <link rel="stylesheet" href="styles.css?v=8" />
+  </head>
+  <body>
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+
+    <div class="app-shell" id="top">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="Reflect home">
+          <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="brand-name">reflect<span class="brand-dot">.</span></span>
+        </a>
+        <div class="topbar-center"><span class="live-dot"></span> SMART MIRROR <span class="topbar-divider">/</span> PSE AI <span class="topbar-divider">·</span> TEAM 8</div>
+        <div class="topbar-actions">
+          <span class="connection-state" id="connectionState"><span class="state-dot"></span><span id="connectionText">Checking connection</span></span>
+          <button class="fullscreen-toggle" id="fullscreenToggle" type="button" aria-pressed="false" title="Enter full screen">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m13-5h3a2 2 0 0 1 2 2v3M3 16v3a2 2 0 0 0 2 2h3m8 0h3a2 2 0 0 0 2-2v-3"/></svg>
+            <span id="fullscreenLabel">Full screen</span>
+          </button>
+          <button class="privacy-toggle" id="privacyToggle" type="button" aria-pressed="false" title="Hide names, messages and personal details">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 10.6a2 2 0 0 0 2.8 2.8M9.9 5.2A10.7 10.7 0 0 1 12 5c5.5 0 9 7 9 7a16 16 0 0 1-3.2 4.1M6.2 6.2C3.9 7.7 3 12 3 12s3.5 7 9 7a9.8 9.8 0 0 0 4-.8"/></svg>
+            <span>Privacy</span>
+            <span class="toggle-track"><span></span></span>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="welcome-row" aria-label="Current time and weather">
+          <div class="welcome-copy">
+            <p class="eyebrow" id="greeting">A NEW DAY, AT YOUR PACE</p>
+            <h1><span id="clock">--:--</span><span class="clock-colon">:</span><span class="clock-seconds" id="seconds">--</span></h1>
+            <p class="date-line" id="dateLine">Loading today…</p>
+          </div>
+          <div class="welcome-note">
+            <span class="note-rule"></span>
+            <p>Make room for what<br /><em>matters today.</em></p>
+          </div>
+          <section class="weather-card" aria-label="Local weather">
+            <div class="weather-topline"><span class="weather-label">WEATHER <span class="weather-location">· KOLKATA</span></span><span class="weather-live" id="weatherStatus">LOADING</span></div>
+            <div class="weather-main"><span class="weather-icon" id="weatherIcon" aria-hidden="true">☀</span><span class="temperature" id="temperature">--°</span></div>
+            <div class="weather-description" id="weatherDescription">Checking local forecast…</div>
+            <div class="weather-meta"><span id="feelsLike">Feels like --°</span><span class="weather-meta-divider"></span><span id="windSpeed">Wind -- km/h</span></div>
+          </section>
+        </section>
+
+        <section class="dashboard-grid" aria-label="Smart mirror dashboard">
+          <section class="panel briefing-panel" aria-labelledby="briefingTitle">
+            <div class="panel-heading">
+              <div><p class="eyebrow">A QUICK PULSE</p><h2 id="briefingTitle">Morning briefing</h2></div>
+              <div class="briefing-actions">
+                <span class="demo-badge" id="briefingBadge"><span></span> DEMO DATA</span>
+                <button class="gmail-connect-button" id="gmailConnectButton" type="button">Connect Gmail</button>
+              </div>
+            </div>
+            <p class="panel-intro" id="briefingIntro">Sample notifications for the PSE demo. Connect Gmail for a read-only inbox preview.</p>
+            <div class="inbox-summary private-info">
+              <div class="inbox-count"><strong id="inboxUnreadCount">08</strong><span id="inboxUnreadCaption">unread</span></div>
+              <div class="inbox-summary-copy"><strong id="inboxSummaryTitle">Across your inboxes</strong><span id="inboxSummaryNote">Sample count for display only</span></div>
+              <span class="inbox-spark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+            </div>
+            <div class="message-list" id="messageList" aria-label="Sample messages">
+              <article class="message-card private-info">
+                <span class="message-avatar avatar-violet">A</span>
+                <div class="message-body"><div class="message-meta"><strong>Alex Morgan</strong><span>WhatsApp · DEMO DATA · 9:12 AM</span></div><p>Are we still on for the project review?</p></div>
+                <span class="unread-dot" aria-label="Unread sample"></span>
+              </article>
+              <article class="message-card private-info" id="gmailMessageCard">
+                <span class="message-avatar avatar-orange">M</span>
+                <div class="message-body"><div class="message-meta"><strong>Meera Shah</strong><span>Gmail · DEMO DATA · 8:46 AM</span></div><p>Shared the final slides for tomorrow.</p></div>
+                <span class="unread-dot" aria-label="Unread sample"></span>
+              </article>
+              <article class="message-card private-info">
+                <span class="message-avatar avatar-green">P</span>
+                <div class="message-body"><div class="message-meta"><strong>PSE Project Group</strong><span>Telegram · DEMO DATA · 8:30 AM</span></div><p>The mirror demo is looking great ✨</p></div>
+                <span class="unread-dot" aria-label="Unread sample"></span>
+              </article>
+            </div>
+            <div class="panel-footnote" id="briefingFootnote"><span class="info-icon">i</span> Sample names and messages are fictional.</div>
+          </section>
+
+          <section class="panel schedule-panel" id="schedulePanel" aria-labelledby="scheduleTitle">
+            <div class="panel-heading">
+              <div><p class="eyebrow">YOUR DAY, IN FOCUS</p><h2 id="scheduleTitle">Schedule <span class="schedule-count" id="scheduleCount">0</span></h2></div>
+              <button class="add-button" id="addEventButton" type="button"><span>+</span> Add</button>
+            </div>
+            <div class="schedule-date"><span class="schedule-date-mark"></span><span id="scheduleDate">TODAY</span><span class="schedule-date-line"></span><button class="clear-done" id="clearDoneButton" type="button" title="Remove completed items">Clear done</button></div>
+            <div class="schedule-list" id="scheduleList" aria-live="polite"></div>
+            <div class="schedule-empty" id="scheduleEmpty" hidden>
+              <span class="empty-orbit">✳</span><strong>A little breathing room.</strong><span>Add a reminder or event to get started.</span>
+            </div>
+            <a class="voice-command" id="voiceButton" href="#schedulePanel">
+              <span class="voice-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 18v3m-4 0h8"/></svg></span>
+              <span class="voice-copy"><strong>Try a voice command</strong><span id="voiceStatus">Say “remind me at 6 pm to review the demo”</span></span>
+              <span class="voice-arrow">↗</span>
+            </a>
+            <button class="command-alt" id="showCommandFallback" type="button">Or type a command</button>
+            <form class="command-fallback" id="commandFallback" hidden>
+              <label id="commandFallbackLabel" for="commandInput">Type a schedule question or reminder.</label>
+              <div class="command-input-row"><input id="commandInput" type="text" placeholder="Add a reminder at 6 pm to review the demo" autocomplete="off" /><button type="submit">Ask <span>↗</span></button></div>
+            </form>
+            <p class="command-response" id="commandResponse" role="status" aria-live="polite" hidden></p>
+          </section>
+
+          <section class="side-stack" aria-label="Shortcuts and mirror status">
+            <section class="panel shortcuts-panel" aria-labelledby="shortcutsTitle">
+              <div class="panel-heading compact-heading"><div><p class="eyebrow">YOUR EVERYDAY TOOLS</p><h2 id="shortcutsTitle">Quick links</h2></div><span class="link-count">06 APPS</span></div>
+              <div class="app-links">
+                <a class="app-link" href="https://web.whatsapp.com/" target="_blank" rel="noopener noreferrer"><span class="app-icon whatsapp">◔</span><span>WhatsApp</span><span class="launch-arrow">↗</span></a>
+                <a class="app-link" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><span class="app-icon instagram">◎</span><span>Instagram</span><span class="launch-arrow">↗</span></a>
+                <a class="app-link" href="https://mail.google.com/" target="_blank" rel="noopener noreferrer"><span class="app-icon gmail">M</span><span>Gmail</span><span class="launch-arrow">↗</span></a>
+                <a class="app-link" href="https://outlook.live.com/mail/" target="_blank" rel="noopener noreferrer"><span class="app-icon outlook">O</span><span>Outlook</span><span class="launch-arrow">↗</span></a>
+                <a class="app-link" href="https://web.telegram.org/" target="_blank" rel="noopener noreferrer"><span class="app-icon telegram">➤</span><span>Telegram</span><span class="launch-arrow">↗</span></a>
+                <a class="app-link" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer"><span class="app-icon linkedin">in</span><span>LinkedIn</span><span class="launch-arrow">↗</span></a>
+              </div>
+              <p class="links-note"><span class="link-lock">↗</span> Opens the service in a new tab. Sign in there to continue.</p>
+            </section>
+
+            <section class="mirror-card" aria-label="Mirror system status">
+              <div class="mirror-card-top"><span class="mirror-symbol" aria-hidden="true">◒</span><span class="mirror-ready"><span></span> MIRROR READY</span></div>
+              <p>Your space, <em>your pace.</em></p>
+              <div class="mirror-card-bottom"><span>REFLECT / PSE AI</span><span>v1.0 <i>•</i> LOCAL</span></div>
+            </section>
+          </section>
+        </section>
+      </main>
+      <footer class="footer"><span>REFLECT <span class="footer-dot">•</span> SMART MIRROR PROTOTYPE</span><span><span class="footer-shield">◈</span> Your schedule stays on this device</span></footer>
+    </div>
+
+    <dialog class="event-dialog" id="eventDialog" aria-labelledby="dialogTitle">
+      <form id="eventForm" method="dialog">
+        <div class="dialog-heading"><div><p class="eyebrow">MAKE IT A MOMENT</p><h2 id="dialogTitle">Add to your day</h2></div><button class="dialog-close" id="closeDialogButton" type="button" aria-label="Close">×</button></div>
+        <label class="form-field"><span>What do you need to remember?</span><input id="eventTitle" name="title" maxlength="72" placeholder="e.g. Pick up a coffee" required autocomplete="off" /></label>
+        <div class="form-row">
+          <label class="form-field"><span>Time</span><input id="eventTime" name="time" type="time" required /></label>
+          <label class="form-field"><span>Type</span><select id="eventKind" name="kind"><option value="event">Event</option><option value="reminder">Reminder</option></select></label>
+        </div>
+        <div class="dialog-actions"><button class="cancel-button" id="cancelDialogButton" type="button">Cancel</button><button class="save-button" type="submit">Save to schedule <span>↗</span></button></div>
+        <p class="storage-note"><span>◈</span> Saved privately in this browser on this device.</p>
+      </form>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js?v=10" defer></script>
+  </body>
+</html>
